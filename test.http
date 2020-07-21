@@ -1,0 +1,45 @@
+# ---- ENVIRONMENTS ---- #
+
+:http = http
+:host = localhost:3000
+:appkey = key
+:api = :http://:host
+:token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIiA6ICJ3ZWJ1c2VyIiwgInVzZXJfaWQiIDogMSwgImV4cCIgOiAxNTk1MzQ5ODk5fQ.CrkXf6Zq-oHYVG5GBi0U1k-5IdQjeq3aEqcfE5wRicA
+
+# :header = <<
+# apikey: :appkey
+# Content-Type: application/json
+#
+#
+:header = <<
+apikey: :appkey
+Content-Type: application/json
+Authorization: Bearer :token
+
+
+#GET LOGin
+POST :api/rpc/login
+:header
+{
+  "email": "alice@email.com",
+  "password": "pass"
+}
+
+#GET TODO
+GET :api/todos
+:header
+
+
+#GET TODO
+GET :api/todos?id=eq.1
+:header
+
+#GET TODO
+GET :api/todos?limit=1
+:header
+
+
+#GET TODO2
+GET :api/todos
+:header
+Accept: text/csv
