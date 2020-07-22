@@ -26,7 +26,7 @@ create extension if not exists pgcrypto;
 \ir libs/request.sql
 
 -- functions for sending messages to RabbitMQ entities
-\ir libs/rabbitmq.sql
+-- \ir libs/rabbitmq.sql
 
 -- functions for JWT token generation in the database context
 \ir libs/pgjwt.sql
