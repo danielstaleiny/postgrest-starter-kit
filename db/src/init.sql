@@ -33,7 +33,7 @@ create extension if not exists pgcrypto;
 
 -- save app settings (they are storred in the settings.secrets table)
 select settings.set('jwt_secret', :quoted_jwt_secret);
-select settings.set('jwt_lifetime', '3600');
+select settings.set('jwt_lifetime', '900'); -- 15 min
 
 
 \echo # Loading application definitions
