@@ -45,12 +45,12 @@ begin
         end if;
 
         if csrf_token is not null then
-           delete from data."session" where id=csrf_token::uuid; -- remove old refresh token for this user with device
+           delete from data."session" where csrf=csrf_token; -- remove old refresh token for this user with device
         end if;
 
         -- TODO add more info, like IP address, Location to logs, and to session.
         insert into data."session" as s
-        (user_id, device_name, csrf, exp) values (usr.id, head,util.ifnull(csrf, pgjwt.url_encode(convert_to(replace(uuid_generate_v4()::text, '-', ''), 'utf8'))), extract(epoch from now())::integer + settings.get('refresh_token_lifetime')::int)
+        (user_id, device_name, csrf, exp) values (usr.id, head, util.ifnull(csrf, pgjwt.url_encode(convert_to(replace(uuid_generate_v4()::text, '-', ''), 'utf8'))), extract(epoch from now())::integer + settings.get('refresh_token_lifetime')::int)
         returning *
         into ses;
 

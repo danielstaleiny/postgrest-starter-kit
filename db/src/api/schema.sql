@@ -12,6 +12,7 @@ grant api to current_user; -- this is a workaround for RDS where the master user
 -- our endpoints
 \ir login.sql
 \ir refresh_token.sql
-\ir signup.sql
+\ir logout.sql
+\ir register.sql
 \ir me.sql
 \ir todos.sql

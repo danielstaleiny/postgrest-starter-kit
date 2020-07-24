@@ -4,7 +4,7 @@
 :host = localhost:3000
 :appkey = key
 :api = :http://:host
-:token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIiA6ICJ3ZWJ1c2VyIiwgInVzZXJfaWQiIDogMywgImV4cCIgOiAxNTk1NjExNzU3fQ.Tg5izt972mSbtV0Ip_pHPldcrCfdxUd6k4aIwQRaRMo
+:token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIiA6ICJ3ZWJ1c2VyIiwgInVzZXJfaWQiIDogMywgImV4cCIgOiAxNTk1NjEzMTk0fQ.ahy1U_sSuSVqscdRZcp_BTth0LYdub6h9a5j2M5mwXE
 
 # :header = <<
 # apikey: :appkey
@@ -39,8 +39,8 @@ POST :api/rpc/login
 }
 
 
-# POST Signup
-POST :api/rpc/signup
+# POST register
+POST :api/rpc/register
 :header
 {
   "name": "alice",
@@ -66,7 +66,14 @@ GET :api/sessions
 POST :api/rpc/refresh_token
 :header
 {
-  "refresh_token": "f996bc58-5d74-4ab7-b05f-722741b20786"
+  "refresh_token": "de688895-6181-440f-a25a-8a9ba14b2162"
+}
+
+#Logout
+POST :api/rpc/logout
+:headerT
+{
+  "refresh_token": "de688895-6181-440f-a25a-8a9ba14b2162"
 }
 
 
