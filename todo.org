@@ -1,5 +1,13 @@
 #+TITLE: Todo
 
+* TODO
+** Fix test, change mocha to Jest and make it async/fast.
+** Move some of the script to npm, and use npm as script place.
+** Npm script to watch postrgest in docker
+#+BEGIN_SRC bash
+docker logs --follow ContainerName/ContainerID
+#+END_SRC
+
 * Session management
 ** login/register for JWT
 ** create table session which keeps info about device type, and keeps long live refresh token -> opaque
