@@ -1,0 +1,87 @@
+#+TITLE: Todo
+
+* Session management
+** login/register for JWT
+** create table session which keeps info about device type, and keeps long live refresh token -> opaque
+** when login in,
+*** reset long live refresh token timestamp.
+*** save refresh token to cookie
+** Refresh token method
+*** Use refresh token to get new valid JWT token
+*** This refresh token method should be triggered on 401 JWT token expired error handling only, and it should re-fire request
+** For NO-JS way, look for header attribute, and instead of returning token, just save it to cookie. This way JWT can be used. otherwise use JWT to save to localstorage/sessionstorage/global variable mutable.
+
+
+CSRF token if js on, add it to JWT and validate it
+if js is off compare
+    Determining the origin the request is coming from (source origin). Can be done via Origin or Referer headers.
+    Determining the origin the request is going to (target origin).
+    those should be written in request if js is off, and check for.
+
+
+    if cookie is used,
+
+
+JWT
+    if cookie is allowed, use JWT in cookie and store CSRF in localstorage
+    if cookie is not allowed use JWT in localstorage
+    if no js is allowed use cookie and check headers and origin
+
+Refresh token
+   if cookie use cookie secure it, use CSRF token,  check headers etc.
+   if cookie is not allowed use localstorage use salt to obfuscate the token. This is prone to XSS but I don't know any other way if we don't have cookies.
+   if no js is allowed use Cookie and check headers etc.
+
+
+   Email token / code
+    we use JWT 10min token.
+    or
+   Email code
+    We use 6 random digits
+    check matching session, and matching numbers to validate   -> table with foreing keys, number code, valid to 10 minutes,
+
+
+
+
+    Don't use localstorage !
+    use localstorage for information about number of tab open.
+    if the object is 2th tab, use flag don't re-new refresh-token and refresh token will not be changed.
+    you can use /refresh_token endpoint to get jwt token for each tab and store it in sessionStorage for keeping token even if you reload.
+    make triggers for logout across tabs, if you log out your self
+
+     window.localStorage.setItem('logout', Date.now())
+
+const syncLogout = (event) {
+  if (event.key === 'logout') {
+    console.log('logged out from storage!')
+    // Remove saved data from sessionStorage
+sessionStorage.removeItem('key');
+
+// Remove all saved data from sessionStorage
+sessionStorage.clear();
+//redirect to home or login
+  }
+}
+
+     window.addEventListener('storage', syncLogout)
+
+
+
+
+
+JWT
+if js
+ - use session storage, check tab count for not reseting refresh_token \\ maybe in memory is better, because sessionStorage can be accessed ??
+ - each tab has its own jwt token, no problem
+if not js
+    if no js is allowed use cookie and check headers and origin / device, it would be nice to add it to JWT and check it with lua for security.
+
+REFRESH TOKEN
+if js
+  use cookie but make sure it can be written by server only,
+  send CSRF token which will be stored in localstorage
+if not cookie
+  use sessionstorage
+if not js
+  cookie
+  CSRF is not possible to send with static site :(, simply check for device headers, origins etc. maybe even IP
