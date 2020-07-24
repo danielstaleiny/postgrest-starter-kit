@@ -1,6 +1,8 @@
 {
   "name": "starter-kit",
-  "dependencies": {},
+  "dependencies": {
+    "jest": "^26.1.0"
+  },
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-preset-latest": "^6.24.1",
