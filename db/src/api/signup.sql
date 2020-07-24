@@ -5,7 +5,7 @@ begin
     insert into data."user" as u
     (name, email, password) values ($1, $2, $3)
     returning *
-   	into usr;
+    into usr;
 
     return json_build_object(
         'me', json_build_object(

@@ -16,6 +16,7 @@ set client_min_messages to warning;
 \echo # Loading database definition
 begin;
 create extension if not exists pgcrypto;
+create extension if not exists "uuid-ossp";
 
 \echo # Loading dependencies
 
@@ -24,6 +25,8 @@ create extension if not exists pgcrypto;
 
 -- functions for reading different http request properties exposed by PostgREST
 \ir libs/request.sql
+
+\ir libs/util.sql
 
 -- functions for sending messages to RabbitMQ entities
 -- \ir libs/rabbitmq.sql
@@ -34,6 +37,7 @@ create extension if not exists pgcrypto;
 -- save app settings (they are storred in the settings.secrets table)
 select settings.set('jwt_secret', :quoted_jwt_secret);
 select settings.set('jwt_lifetime', '900'); -- 15 min
+select settings.set('refresh_token_lifetime', '2592000'); -- 30 days
 
 
 \echo # Loading application definitions
@@ -52,6 +56,7 @@ select settings.set('jwt_lifetime', '900'); -- 15 min
 \echo # Loading roles and privilege settings
 \ir authorization/roles.sql
 \ir authorization/privileges.sql
+\ir authorization/firewall.sql
 
 \echo # Loading sample data
 \ir sample_data/data.sql

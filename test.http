@@ -4,7 +4,7 @@
 :host = localhost:3000
 :appkey = key
 :api = :http://:host
-:token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIiA6ICJ3ZWJ1c2VyIiwgInVzZXJfaWQiIDogMSwgImV4cCIgOiAxNTk1NDA1MTY5fQ.M-BrwOUqNSCLNZgcxhhQ0xlLfGuxX7AQ7a5BS-oTWcc
+:token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIiA6ICJ3ZWJ1c2VyIiwgInVzZXJfaWQiIDogMSwgImV4cCIgOiAxNTk1NTgwNTIxfQ.FDUayguywSMa9d1XuynOm1LsXIF2Sg_CGljW2HxsMtI
 
 # :header = <<
 # apikey: :appkey
@@ -13,6 +13,7 @@
 #
 :header = <<
 apikey: :appkey
+User-Agent: restclient/2.0
 Content-Type: application/json
 
 #header with token
@@ -31,12 +32,20 @@ POST :api/rpc/login
 :header
 {
   "email": "alice@email.com",
-  "password": "pass"
+  "password": "pass",
+  "jwt_cookie": false,
+  "rt_cookie": true,
+  "csrf": false
 }
 
 #GET TODO
 GET :api/todos
 :headerT
+
+
+#GET TODO
+GET :api/sessions
+:header
 
 
 #GET TODO

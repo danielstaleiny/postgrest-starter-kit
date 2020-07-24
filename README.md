@@ -88,12 +88,12 @@ docker-compose up -d
 
 The API server will become available at the following endpoint:
 
-- REST [http://localhost:8080/rest/](http://localhost:8080/rest/)
+- REST [http://localhost:8080/api/](http://localhost:8080/api/)
 
 Try a simple request
 
 ```bash
-curl http://localhost:8080/rest/todos?select=id,todo
+curl http://localhost:8080/api/todos?select=id,todo
 ```
 
 
@@ -114,9 +114,9 @@ Here is how you run them
 
 ```bash
 npm install                     # Install test dependencies
-npm test                        # Run all tests (db, rest)
+npm test                        # Run all tests (db, api)
 npm run test_db                 # Run pgTAP tests
-npm run test_rest               # Run integration tests
+npm run test_api               # Run integration tests
 ```
 
 

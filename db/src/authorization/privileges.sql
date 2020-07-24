@@ -8,15 +8,16 @@
 grant usage on schema api to anonymous, webuser;
 
 -- set privileges to all the auth flow functions
-grant execute on function api.login(text,text) to anonymous;
+grant execute on function api.login(text,text, boolean, boolean, boolean) to anonymous;
 grant execute on function api.signup(text,text,text) to anonymous;
 grant execute on function api.me() to webuser;
-grant execute on function api.login(text,text) to webuser;
+grant execute on function api.login(text,text,boolean,boolean,boolean) to webuser;
 grant execute on function api.refresh_token() to webuser;
 
 -- define the who can access todo model data
 -- enable RLS on the table holding the data
 alter table data.todo enable row level security;
+alter table data.session enable row level security;
 -- define the RLS policy controlling what rows are visible to a particular application user
 create policy todo_access_policy on data.todo to api 
 using (
@@ -35,9 +36,14 @@ with check (
 );
 
 
+
+
 -- give access to the view owner to this table
 grant select, insert, update, delete on data.todo to api;
 grant usage on data.todo_id_seq to webuser;
+
+grant select, insert, update, delete on data.session to api;
+-- grant usage on data.todo_id_seq to webuser;
 
 
 -- While grants to the view owner and the RLS policy on the underlying table 
@@ -46,7 +52,9 @@ grant usage on data.todo_id_seq to webuser;
 
 -- authenticated users can request/change all the columns for this view
 grant select, insert, update, delete on api.todos to webuser;
+grant select, insert, update, delete on api.sessions to webuser;
 
 -- anonymous users can only request specific columns from this view
 grant select (id, todo) on api.todos to anonymous;
+grant select (id, user_id, device_name,csrf, exp) on api.sessions to anonymous;
 -------------------------------------------------------------------------------

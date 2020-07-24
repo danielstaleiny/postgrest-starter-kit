@@ -31,6 +31,6 @@ execute procedure encrypt_pass();
 -- on_row_change('{"include":["id"]}'::json) - send only the listed columns
 -- on_row_change('{"exclude":["bigcolumn"]}'::json) - exclude listed columns from the payload
 
-create trigger send_user_change_event
-after insert or update or delete on "user"
-for each row execute procedure rabbitmq.on_row_change('{"include":["id","name","email","role"]}');
+-- create trigger send_user_change_event
+-- after insert or update or delete on "user"
+-- for each row execute procedure rabbitmq.on_row_change('{"include":["id","name","email","role"]}');

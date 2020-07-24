@@ -8,3 +8,9 @@
 create or replace view todos as
 select id, todo, private, (owner_id = request.user_id()) as mine from data.todo;
 alter view todos owner to api; -- it is important to set the correct owner to the RLS policy kicks in
+
+
+
+create or replace view sessions as
+select * from data.session;
+alter view todos owner to api; -- it is important to set the correct owner to the RLS policy kicks in
