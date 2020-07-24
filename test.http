@@ -4,7 +4,7 @@
 :host = localhost:3000
 :appkey = key
 :api = :http://:host
-:token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIiA6ICJ3ZWJ1c2VyIiwgInVzZXJfaWQiIDogMSwgImV4cCIgOiAxNTk1NTgwNTIxfQ.FDUayguywSMa9d1XuynOm1LsXIF2Sg_CGljW2HxsMtI
+:token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIiA6ICJ3ZWJ1c2VyIiwgInVzZXJfaWQiIDogMywgImV4cCIgOiAxNTk1NjExNzU3fQ.Tg5izt972mSbtV0Ip_pHPldcrCfdxUd6k4aIwQRaRMo
 
 # :header = <<
 # apikey: :appkey
@@ -38,6 +38,19 @@ POST :api/rpc/login
   "csrf": false
 }
 
+
+# POST Signup
+POST :api/rpc/signup
+:header
+{
+  "name": "alice",
+  "email": "alice2@email.com",
+  "password": "pass2",
+  "jwt_cookie": false,
+  "rt_cookie": true,
+  "csrf": false
+}
+
 #GET TODO
 GET :api/todos
 :headerT
@@ -47,6 +60,19 @@ GET :api/todos
 GET :api/sessions
 :header
 
+
+
+#GET TODO
+POST :api/rpc/refresh_token
+:header
+{
+  "refresh_token": "f996bc58-5d74-4ab7-b05f-722741b20786"
+}
+
+
+#GET ME
+GET :api/rpc/me
+:headerT
 
 #GET TODO
 GET :api/todos?id=eq.1

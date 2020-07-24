@@ -8,13 +8,12 @@
 -- Token should be saved to sessionStorage
 -- Refresh-token should be saved in cookie which only server can setup.
 
-create or replace function login(email text, password text, jwt_cookie boolean DEFAULT false, rt_cookie boolean DEFAULT false, csrf boolean DEFAULT true ) returns json as $$
+create or replace function login(email text, password text, jwt_cookie boolean DEFAULT false, rt_cookie boolean DEFAULT false, csrf boolean DEFAULT true, csrf_token text DEFAULT null ) returns json as $$
 declare
     usr record;
     ses record;
     token text;
     head text;
-    -- host text;
 begin
     select * from data."user" as u
     where u.email = $1 and u.password = public.crypt($2, u.password)
@@ -45,8 +44,11 @@ begin
                     );
         end if;
 
-        delete from data."session" where user_id=usr.id and device_name=head; -- remove old refresh token for this user with device
+        if csrf_token is not null then
+           delete from data."session" where id=csrf_token::uuid; -- remove old refresh token for this user with device
+        end if;
 
+        -- TODO add more info, like IP address, Location to logs, and to session.
         insert into data."session" as s
         (user_id, device_name, csrf, exp) values (usr.id, head,util.ifnull(csrf, pgjwt.url_encode(convert_to(replace(uuid_generate_v4()::text, '-', ''), 'utf8'))), extract(epoch from now())::integer + settings.get('refresh_token_lifetime')::int)
         returning *
@@ -85,4 +87,4 @@ begin
 end
 $$ volatile security definer language plpgsql;
 -- by default all functions are accessible to the public, we need to remove that and define our specific access rules
-revoke all privileges on function login(text, text, boolean, boolean, boolean) from public;
+revoke all privileges on function login(text, text, boolean, boolean, boolean, text) from public;
