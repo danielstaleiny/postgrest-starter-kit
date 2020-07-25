@@ -7,8 +7,8 @@ begin
   if claim is not null then
      head := request.header('host') || '-' ||  request.header('user-agent');
      if claim != head then
-        RAISE insufficient_privilege USING
-              DETAIL = 'ERROR CODE 69 firewall.sql', -- 'You changed User-Agent or Domain'
+        RAISE invalid_authorization_specification USING
+              DETAIL = 'Your token is assign to different device', -- 'You changed User-Agent or Domain'
               HINT = 'Use jwt without cookies instead.';
      end if;
   end if;

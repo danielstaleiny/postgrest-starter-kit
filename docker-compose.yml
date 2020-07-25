@@ -28,7 +28,7 @@ services:
 
     volumes:
       - "./db/src:/docker-entrypoint-initdb.d"
-      - "./.db-data:/var/lib/postgresql/data"
+      - "./tests/.db-data:/var/lib/postgresql/data"
   ### DB END
 
   # PostgREST instance, is responsible for communicating with the database

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/rpc/login fail 404 1`] = `
+Object {
+  "body": Object {
+    "code": "28P01",
+    "details": "Invalid email or password",
+    "hint": "Make sure your email and password are correct!",
+    "message": "invalid_password",
+  },
+  "status": 403,
+  "statusText": "Forbidden",
+}
+`;
+
+exports[`/rpc/login success 200 1`] = `
+Object {
+  "body": Object {
+    "csrf": "checked",
+    "email": "alice@email.com",
+    "id": 1,
+    "name": "alice",
+    "refresh_token": "checked",
+    "role": "webuser",
+    "token": "checked",
+  },
+  "status": 200,
+  "statusText": "OK",
+}
+`;

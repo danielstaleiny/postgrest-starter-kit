@@ -1,22 +1,29 @@
 {
   "name": "starter-kit",
   "dependencies": {
+    "fetch-ponyfill": "^6.1.1",
     "jest": "^26.1.0"
   },
   "devDependencies": {
-    "babel-core": "^6.24.0",
-    "babel-preset-latest": "^6.24.1",
     "dotenv": "4.0.0",
     "jsonwebtoken": "^8.3.0",
     "mocha": "^6.2.0",
+    "prettier": "^2.0.5",
     "should": "^11.2.0",
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "test_api": "mocha --no-timeouts --require babel-core/register ./tests/api/",
+    "test_api": "mocha --no-timeouts ./tests/api/",
     "test_db": "node tests/bin/test_db.js",
     "test": "npm run test_db && npm run test_api"
   },
   "author": "ruslan.talpa@subzero.cloud",
-  "license": "ISC"
+  "license": "ISC",
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "printWidth": 80
+  }
 }

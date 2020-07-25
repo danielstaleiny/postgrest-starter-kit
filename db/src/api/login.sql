@@ -20,7 +20,7 @@ begin
     INTO usr;
 
     if usr is NULL then
-        raise exception 'invalid email/password';
+        raise invalid_password using detail = 'Invalid email or password', hint = 'Make sure your email and password are correct!';
     else
         head := request.header('host') || '-' ||  request.header('user-agent');
         if jwt_cookie is true then

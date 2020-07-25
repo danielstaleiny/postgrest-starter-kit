@@ -5,7 +5,7 @@ begin
     end if;
     perform response.delete_cookie('JWTTOKEN');
     perform response.delete_cookie('REFRESHTOKEN');
-    return json_build_object('ok': true);
+    return json_build_object('ok', true);
 
 end
 $$ security definer language plpgsql;
