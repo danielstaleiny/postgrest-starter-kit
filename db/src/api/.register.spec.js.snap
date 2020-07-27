@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/rpc/register Success 201 1`] = `
+Object {
+  "body": Object {
+    "csrf": "checked",
+    "email": "test@email.com",
+    "id": 3,
+    "name": "New user",
+    "refresh_token": "checked",
+    "role": "webuser",
+    "token": "checked",
+  },
+  "status": 200,
+  "statusText": "OK",
+}
+`;
+
+exports[`/rpc/register Success 201, no csrf 1`] = `
+Object {
+  "body": Object {
+    "email": "test2@email.com",
+    "id": 4,
+    "name": "New user2",
+    "refresh_token": "checked",
+    "role": "webuser",
+    "token": "checked",
+  },
+  "status": 200,
+  "statusText": "OK",
+}
+`;
