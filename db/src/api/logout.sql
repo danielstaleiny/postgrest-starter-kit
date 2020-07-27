@@ -1,3 +1,10 @@
+
+create or replace function logout() returns text as $$
+begin
+return logout(null);
+end
+$$ security definer language plpgsql;
+
 create or replace function logout(refresh_token text) returns text as $$
 begin
     if refresh_token is not null then
@@ -10,4 +17,5 @@ begin
 end
 $$ security definer language plpgsql;
 
+revoke all privileges on function logout() from public;
 revoke all privileges on function logout(text) from public;

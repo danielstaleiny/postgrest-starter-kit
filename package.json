@@ -15,7 +15,8 @@
   "scripts": {
     "test_api": "mocha --no-timeouts ./tests/api/",
     "test_db": "node tests/bin/test_db.js",
-    "test": "npm run test_db && npm run test_api"
+    "test": "npm run test_db && npm run test_api",
+    "test-jest": "node util/reset-db-now.js && jest"
   },
   "author": "ruslan.talpa@subzero.cloud",
   "license": "ISC",

@@ -5,13 +5,6 @@ const { get, post, put, patch, del } = require(`${ROOT}/util/fetch.js`)(
 )
 
 describe('/rpc/login', () => {
-  beforeAll(() => {
-    return resetdb()
-  })
-  afterAll(() => {
-    return resetdb()
-  })
-
   test('success 200', async () => {
     const res = await post('rpc/login')({
       body: {
