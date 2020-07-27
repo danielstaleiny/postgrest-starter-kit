@@ -10,6 +10,8 @@ COPY data.user (id,name,email,"password") FROM STDIN (FREEZE ON, delimiter ',');
 \echo # filling table data.session (2)
 COPY data.session (id,user_id,device_name,csrf,exp) FROM STDIN (FREEZE ON, delimiter ',');
 de688895-6181-440f-a25a-8a9ba14b2162,1,test device,null,1598433264
+de688895-6181-440f-a25a-8a9ba14b2163,1,test device refresh_token timed out,null,1598
+de688895-6181-440f-a25a-8a9ba14b2164,1,test device refresh_token valid,null,1998433264
 \.
 --
 -- fill table data.todo (6)

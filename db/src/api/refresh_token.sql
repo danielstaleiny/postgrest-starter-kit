@@ -12,11 +12,11 @@ begin
 
 
     if ses is null then
-        raise exception 'Session was not found'; -- TODO check error code
+        raise sqlstate 'PT404' using message = 'Not Found', detail = 'Session not found', hint = 'Login again to receive new valid refresh_token';
     elsif (ses.exp::int < extract(epoch from now())::integer) then
-        raise exception 'Session expired'; -- TODO check error code
+        raise sqlstate 'PT401' using message = 'Unauthorized', detail = 'Session expired', hint = 'Login again to receive new valid refresh_token';
     elsif ses.csrf != csrf then
-        raise exception 'CSRF does not match'; -- TODO check error code
+        raise sqlstate 'PT404' using message = 'Not Found', detail = 'CSRF not found', hint = '';
     else
         select * from data."user" as u
         where id = ses.user_id

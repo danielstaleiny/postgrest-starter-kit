@@ -1,5 +1,4 @@
 const ROOT = process.cwd()
-const resetdb = require(`${ROOT}/util/reset-db.js`)
 const { get, post, put, patch, del } = require(`${ROOT}/util/fetch.js`)(
   'http://localhost:3000/'
 )

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/rpc/refresh_token 200 get new token 1`] = `
+Object {
+  "body": Object {
+    "token": "checked",
+  },
+  "status": 200,
+  "statusText": "OK",
+}
+`;
+
+exports[`/rpc/refresh_token 404 CSRF not found 1`] = `
+Object {
+  "body": Object {
+    "details": "CSRF not found",
+    "hint": "",
+  },
+  "status": 404,
+  "statusText": "Not Found",
+}
+`;
+
+exports[`/rpc/refresh_token 404 Session not found 1`] = `
+Object {
+  "body": Object {
+    "details": "Session not found",
+    "hint": "Login again to receive new valid refresh_token",
+  },
+  "status": 404,
+  "statusText": "Not Found",
+}
+`;
+
+exports[`/rpc/refresh_token fail timed out 401 Session time out 1`] = `
+Object {
+  "body": Object {
+    "details": "Session expired",
+    "hint": "Login again to receive new valid refresh_token",
+  },
+  "status": 401,
+  "statusText": "Unauthorized",
+}
+`;

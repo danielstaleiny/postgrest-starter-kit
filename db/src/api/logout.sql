@@ -1,11 +1,5 @@
 
-create or replace function logout() returns text as $$
-begin
-return logout(null);
-end
-$$ security definer language plpgsql;
-
-create or replace function logout(refresh_token text) returns text as $$
+create or replace function logout(refresh_token text default null) returns text as $$
 begin
     if refresh_token is not null then
        delete from data."session" where id=refresh_token::uuid;
@@ -17,5 +11,4 @@ begin
 end
 $$ security definer language plpgsql;
 
-revoke all privileges on function logout() from public;
 revoke all privileges on function logout(text) from public;

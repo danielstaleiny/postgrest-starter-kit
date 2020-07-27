@@ -12,7 +12,6 @@ grant execute on function api.login(text,text,boolean,boolean,boolean,text) to a
 grant execute on function api.login(text,text,boolean,boolean,boolean,text) to webuser;
 grant execute on function api.register(text,text,text,boolean,boolean,boolean) to anonymous;
 grant execute on function api.logout(text) to webuser;
-grant execute on function api.logout() to webuser;
 grant execute on function api.me() to webuser;
 grant execute on function api.refresh_token(text,text,boolean) to anonymous;
 grant execute on function api.refresh_token(text,text,boolean) to webuser;
