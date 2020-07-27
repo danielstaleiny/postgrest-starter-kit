@@ -21,4 +21,14 @@ describe('/rpc/logout', () => {
     })
     expect(res).toMatchSnapshot()
   })
+
+  test('success 200 with refresh_token which is not in db', async () => {
+    const res = await post('rpc/logout')({
+      withRole: { id: 1, role: 'webuser' },
+      body: {
+        refresh_token: 'de688895-6181-440f-a25a-000000000000',
+      },
+    })
+    expect(res).toMatchSnapshot()
+  })
 })

@@ -8,6 +8,14 @@ Object {
 }
 `;
 
+exports[`/rpc/logout success 200 with refresh_token which is not in db 1`] = `
+Object {
+  "body": "{\\"ok\\" : true}",
+  "status": 200,
+  "statusText": "OK",
+}
+`;
+
 exports[`/rpc/logout success 200 without refresh_token 1`] = `
 Object {
   "body": "{\\"ok\\" : true}",
