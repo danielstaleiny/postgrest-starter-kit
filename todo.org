@@ -1,7 +1,7 @@
 #+TITLE: Todo
 
 * TODO
-** Fix test, change mocha to Jest and make it async/fast.
+** DONE Fix test, change mocha to Jest and make it async/fast.
 ** Move some of the script to npm, and use npm as script place.
 ** Npm script to watch postrgest in docker
 #+BEGIN_SRC bash
@@ -93,3 +93,11 @@ if not cookie
 if not js
   cookie
   CSRF is not possible to send with static site :(, simply check for device headers, origins etc. maybe even IP
+
+
+
+
+* TODO
+** Front-end -> login flow for web.
+
+** Front-end -> login flow for web without js.
